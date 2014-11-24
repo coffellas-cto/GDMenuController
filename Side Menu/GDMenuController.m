@@ -8,8 +8,6 @@
 
 #import "GDMenuController.h"
 
-const NSTimeInterval kGDMenuControllerMenuAnimationDuration = 0.3;
-
 @interface GDMenuController() {
     UIView *_VCContainerView;
     UIView *_menuContainerView;
@@ -26,7 +24,7 @@ const NSTimeInterval kGDMenuControllerMenuAnimationDuration = 0.3;
 - (void)showMenuAnimated:(BOOL)animated {
     CGRect newFrame = _VCContainerView.frame;
     newFrame.origin.x = newFrame.size.width * _menuWidthPart;
-    [UIView animateWithDuration:animated ? kGDMenuControllerMenuAnimationDuration : 0 animations:^{
+    [UIView animateWithDuration:animated ? _transitionInterval : 0 animations:^{
         _VCContainerView.frame = newFrame;
     }];
 }
@@ -36,7 +34,7 @@ const NSTimeInterval kGDMenuControllerMenuAnimationDuration = 0.3;
         viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         viewController.view.frame = CGRectMake(0, 0, CGRectGetWidth(_viewController.view.frame), CGRectGetHeight(_viewController.view.frame));
         
-        [UIView transitionWithView:_VCContainerView duration:kGDMenuControllerMenuAnimationDuration options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [UIView transitionWithView:_VCContainerView duration:_transitionInterval options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
             if (_currentVC) {
                 [_currentVC.view removeFromSuperview];
             }
@@ -49,7 +47,7 @@ const NSTimeInterval kGDMenuControllerMenuAnimationDuration = 0.3;
     
     CGRect newFrame = _VCContainerView.frame;
     newFrame.origin.x = 0;
-    [UIView animateWithDuration:animated ? kGDMenuControllerMenuAnimationDuration : 0 animations:^{
+    [UIView animateWithDuration:animated ? _transitionInterval : 0 animations:^{
         _VCContainerView.frame = newFrame;
     }];
 }
@@ -72,6 +70,22 @@ const NSTimeInterval kGDMenuControllerMenuAnimationDuration = 0.3;
     _menuViewController = [menuViewController retain];
 }
 
+- (void)setShadowRadius:(CGFloat)shadowRadius {
+    _VCContainerView.layer.shadowRadius = shadowRadius;
+}
+
+- (CGFloat)shadowRadius {
+    return _VCContainerView.layer.shadowRadius;
+}
+
+- (void)setShadowOpacity:(float)shadowOpacity {
+    _VCContainerView.layer.shadowOpacity = shadowOpacity;
+}
+
+- (float)shadowOpacity {
+    return _VCContainerView.layer.shadowOpacity;
+}
+
 #pragma mark - Life Cycle
 
 - (instancetype)init
@@ -90,6 +104,10 @@ const NSTimeInterval kGDMenuControllerMenuAnimationDuration = 0.3;
         _VCContainerView.backgroundColor = [UIColor lightGrayColor];
         
         _menuWidthPart = 0.5;
+        _transitionInterval = 0.3;
+        _VCContainerView.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.shadowRadius = 30;
+        self.shadowOpacity = 0.5;
     }
     return self;
 }

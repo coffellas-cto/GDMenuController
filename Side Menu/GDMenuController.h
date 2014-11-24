@@ -13,6 +13,9 @@
 @property (nonatomic, retain) UIViewController *menuViewController;
 @property (nonatomic, readonly) UIViewController *viewController;
 @property (nonatomic) CGFloat menuWidthPart;
+@property (nonatomic) NSTimeInterval transitionInterval;
+@property (nonatomic) CGFloat shadowRadius;
+@property (nonatomic) float shadowOpacity;
 
 - (void)showMenuAnimated:(BOOL)animated;
 - (void)showViewController:(UIViewController *)viewController animated:(BOOL)animated;
