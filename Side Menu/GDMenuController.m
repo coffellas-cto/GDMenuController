@@ -34,9 +34,10 @@
 #pragma mark - Private Methods
 
 - (void)showMenuAnimated:(BOOL)animated withVelocity:(CGFloat)velocity {
-    CGRect newFrame = _VCContainerView.frame;
-    newFrame.origin.x = newFrame.size.width * _menuWidthPart;
     [UIView animateWithDuration:animated ? _transitionInterval * velocity : 0 animations:^{
+        _VCContainerView.transform = CGAffineTransformMakeScale(_scaleFactor, _scaleFactor);
+        CGRect newFrame = _VCContainerView.frame;
+        newFrame.origin.x = newFrame.size.width * _menuWidthPart;
         _VCContainerView.frame = newFrame;
     } completion:^(BOOL finished) {
         _menuVisible = YES;
@@ -64,9 +65,10 @@
         }];
     }
     
-    CGRect newFrame = _VCContainerView.frame;
-    newFrame.origin.x = 0;
     [UIView animateWithDuration:animated ? _transitionInterval * velocity : 0 animations:^{
+        _VCContainerView.transform = CGAffineTransformMakeScale(1, 1);
+        CGRect newFrame = _VCContainerView.frame;
+        newFrame.origin.x = 0;
         _VCContainerView.frame = newFrame;
     } completion:^(BOOL finished) {
         _menuVisible = NO;
@@ -107,6 +109,16 @@
     return _VCContainerView.layer.shadowOpacity;
 }
 
+- (void)setScaleFactor:(CGFloat)scaleFactor {
+    if (scaleFactor > 1) {
+        scaleFactor = 1;
+    } else if (scaleFactor < 0.5) {
+        scaleFactor = 0.5;
+    }
+    
+    _scaleFactor = scaleFactor;
+}
+
 #pragma mark - Gestures
 
 - (void)tap:(UISwipeGestureRecognizer *)g {
@@ -127,6 +139,10 @@
     if (newX > 0) {
         newFrame.origin.x = newX;
         _VCContainerView.frame = newFrame;
+        
+        CGFloat relativePosition = newX / CGRectGetWidth(_VCContainerView.frame);
+        CGFloat scale = 1 - relativePosition + relativePosition * _scaleFactor;
+        _VCContainerView.transform = CGAffineTransformMakeScale(scale, scale);
     }
     
     // But also, detect the swipe gesture
@@ -187,6 +203,7 @@
         self.shadowRadius = 30;
         self.shadowOpacity = 0.5;
         self.usesGestures = YES;
+        self.scaleFactor = 0.5;
     }
     return self;
 }
