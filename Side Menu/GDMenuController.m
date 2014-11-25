@@ -13,9 +13,8 @@
     UIView *_menuContainerView;
     UIViewController *_currentVC;
     BOOL _menuVisible;
-    UISwipeGestureRecognizer *_swipeGestureRight;
-    UISwipeGestureRecognizer *_swipeGestureLeft;
     UITapGestureRecognizer *_tapGesture;
+    UIPanGestureRecognizer *_panGesture;
 }
 
 @end
@@ -25,9 +24,19 @@
 #pragma mark - Public Methods
 
 - (void)showMenuAnimated:(BOOL)animated {
+    [self showMenuAnimated:animated withVelocity:1];
+}
+
+- (void)showViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [self showViewController:viewController animated:animated withVelocity:1];
+}
+
+#pragma mark - Private Methods
+
+- (void)showMenuAnimated:(BOOL)animated withVelocity:(CGFloat)velocity {
     CGRect newFrame = _VCContainerView.frame;
     newFrame.origin.x = newFrame.size.width * _menuWidthPart;
-    [UIView animateWithDuration:animated ? _transitionInterval : 0 animations:^{
+    [UIView animateWithDuration:animated ? _transitionInterval * velocity : 0 animations:^{
         _VCContainerView.frame = newFrame;
     } completion:^(BOOL finished) {
         _menuVisible = YES;
@@ -37,18 +46,11 @@
     }];
 }
 
-- (void)showViewController:(UIViewController *)viewController animated:(BOOL)animated {
+- (void)showViewController:(UIViewController *)viewController animated:(BOOL)animated withVelocity:(CGFloat)velocity {
     [_currentVC.view removeGestureRecognizer:_tapGesture];
     if (_currentVC != viewController) {
         viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         viewController.view.frame = CGRectMake(0, 0, CGRectGetWidth(_viewController.view.frame), CGRectGetHeight(_viewController.view.frame));
-        
-        [_currentVC.view removeGestureRecognizer:_swipeGestureRight];
-        [_currentVC.view removeGestureRecognizer:_swipeGestureLeft];
-        if (_usesGestures) {
-            [viewController.view addGestureRecognizer:_swipeGestureRight];
-            [viewController.view addGestureRecognizer:_swipeGestureLeft];
-        }
         
         [UIView transitionWithView:_VCContainerView duration:_transitionInterval options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
             if (_currentVC) {
@@ -64,7 +66,7 @@
     
     CGRect newFrame = _VCContainerView.frame;
     newFrame.origin.x = 0;
-    [UIView animateWithDuration:animated ? _transitionInterval : 0 animations:^{
+    [UIView animateWithDuration:animated ? _transitionInterval * velocity : 0 animations:^{
         _VCContainerView.frame = newFrame;
     } completion:^(BOOL finished) {
         _menuVisible = NO;
@@ -109,14 +111,78 @@
 
 - (void)swipeRight:(UISwipeGestureRecognizer *)g {
     [self showMenuAnimated:YES];
+    switch (g.state) {
+        case UIGestureRecognizerStateEnded:
+            NSLog(@"swipeRight");
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)swipeLeft:(UISwipeGestureRecognizer *)g {
     [self showViewController:_currentVC animated:YES];
+    switch (g.state) {
+        case UIGestureRecognizerStateEnded:
+            NSLog(@"swipeLeft");
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)tap:(UISwipeGestureRecognizer *)g {
     [self showViewController:_currentVC animated:YES];
+}
+
+- (void)pan:(UIPanGestureRecognizer *)r {
+    if (!_usesGestures)
+        return;
+    
+    // Get the translation in the view
+    CGPoint translatedPoint = [r translationInView:r.view];
+    [r setTranslation:CGPointZero inView:r.view];
+    
+    // Translate target view using this translation
+    CGRect newFrame = _VCContainerView.frame;
+    CGFloat newX = _VCContainerView.frame.origin.x + translatedPoint.x;
+    if (newX > 0) {
+        newFrame.origin.x = newX;
+        _VCContainerView.frame = newFrame;
+    }
+    
+    // But also, detect the swipe gesture
+    if (r.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint vel = [r velocityInView:r.view];
+        if (vel.x < -1000)
+        {
+            // Fast pan - swipe to the left
+            [self showViewController:_currentVC animated:YES];
+        }
+        else if (vel.x > 1000)
+        {
+            // Fast pan - swipe to the right
+            [self showMenuAnimated:YES];
+        }
+        else
+        {
+            CGFloat thresholdX = CGRectGetWidth(_VCContainerView.frame) * _menuWidthPart;
+            // Velocity calculation is based on the difference between an
+            // actual and default transition distances
+            CGFloat directionMultiplier = vel.x > 0 ? 0.33 : 0.66;
+            if (newX > thresholdX * directionMultiplier) {
+                CGFloat veloctiy = (newX - thresholdX) / thresholdX;
+                [self showMenuAnimated:YES withVelocity:veloctiy];
+            } else {
+                CGFloat velocity = newX / thresholdX * 2;
+                [self showViewController:_currentVC animated:YES withVelocity:velocity];
+            }
+            
+        }
+    }
 }
 
 #pragma mark - Life Cycle
@@ -136,10 +202,9 @@
         _menuContainerView.backgroundColor = [UIColor redColor];
         _VCContainerView.backgroundColor = [UIColor lightGrayColor];
         
-        _swipeGestureRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
-        _swipeGestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
-        _swipeGestureLeft.direction = UISwipeGestureRecognizerDirectionLeft;
         _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+        _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+        [_viewController.view addGestureRecognizer:_panGesture];
         
         _menuWidthPart = 0.5;
         _transitionInterval = 0.3;
@@ -153,17 +218,16 @@
 
 - (void)dealloc {
     [_currentVC.view removeGestureRecognizer:_tapGesture];
-    [_currentVC.view removeGestureRecognizer:_swipeGestureRight];
-    [_currentVC.view removeGestureRecognizer:_swipeGestureLeft];
+    [_viewController.view removeGestureRecognizer:_panGesture];
     [_currentVC release];
     
     [_viewController release];
     [_menuContainerView release];
     [_VCContainerView release];
-    [_swipeGestureRight release];
-    [_swipeGestureLeft release];
-    [_tapGesture release];
     self.menuViewController = nil;
+    
+    [_tapGesture release];
+    [_panGesture release];
     [super dealloc];
 }
 
