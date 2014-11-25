@@ -109,30 +109,6 @@
 
 #pragma mark - Gestures
 
-- (void)swipeRight:(UISwipeGestureRecognizer *)g {
-    [self showMenuAnimated:YES];
-    switch (g.state) {
-        case UIGestureRecognizerStateEnded:
-            NSLog(@"swipeRight");
-            break;
-            
-        default:
-            break;
-    }
-}
-
-- (void)swipeLeft:(UISwipeGestureRecognizer *)g {
-    [self showViewController:_currentVC animated:YES];
-    switch (g.state) {
-        case UIGestureRecognizerStateEnded:
-            NSLog(@"swipeLeft");
-            break;
-            
-        default:
-            break;
-    }
-}
-
 - (void)tap:(UISwipeGestureRecognizer *)g {
     [self showViewController:_currentVC animated:YES];
 }
@@ -180,7 +156,6 @@
                 CGFloat velocity = newX / thresholdX * 2;
                 [self showViewController:_currentVC animated:YES withVelocity:velocity];
             }
-            
         }
     }
 }
