@@ -26,13 +26,8 @@
     self.window.rootViewController = _menuController.viewController;
     [self.window makeKeyAndVisible];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [_menuController showMenuAnimated:YES];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            TestViewController *testVC = [[[TestViewController alloc] initWithNibName:@"TestViewController" bundle:nil] autorelease];
-            [_menuController showViewController:testVC animated:YES];
-        });
-    });
+    TestViewController *testVC = [[[TestViewController alloc] initWithNibName:@"TestViewController" bundle:nil] autorelease];
+    [_menuController showViewController:testVC animated:YES];
     
     return YES;
 }

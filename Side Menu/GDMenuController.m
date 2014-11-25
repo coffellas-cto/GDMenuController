@@ -13,6 +13,9 @@
     UIView *_menuContainerView;
     UIViewController *_currentVC;
     BOOL _menuVisible;
+    UISwipeGestureRecognizer *_swipeGestureRight;
+    UISwipeGestureRecognizer *_swipeGestureLeft;
+    UITapGestureRecognizer *_tapGesture;
 }
 
 @end
@@ -26,22 +29,36 @@
     newFrame.origin.x = newFrame.size.width * _menuWidthPart;
     [UIView animateWithDuration:animated ? _transitionInterval : 0 animations:^{
         _VCContainerView.frame = newFrame;
+    } completion:^(BOOL finished) {
+        _menuVisible = YES;
+        if (_usesGestures) {
+            [_currentVC.view addGestureRecognizer:_tapGesture];
+        }
     }];
 }
 
 - (void)showViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    [_currentVC.view removeGestureRecognizer:_tapGesture];
     if (_currentVC != viewController) {
         viewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         viewController.view.frame = CGRectMake(0, 0, CGRectGetWidth(_viewController.view.frame), CGRectGetHeight(_viewController.view.frame));
         
+        [_currentVC.view removeGestureRecognizer:_swipeGestureRight];
+        [_currentVC.view removeGestureRecognizer:_swipeGestureLeft];
+        if (_usesGestures) {
+            [viewController.view addGestureRecognizer:_swipeGestureRight];
+            [viewController.view addGestureRecognizer:_swipeGestureLeft];
+        }
+        
         [UIView transitionWithView:_VCContainerView duration:_transitionInterval options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
             if (_currentVC) {
                 [_currentVC.view removeFromSuperview];
+                [_currentVC release];
             }
             
             [_VCContainerView addSubview:viewController.view];
         } completion:^(BOOL finished) {
-            _currentVC = viewController;
+            _currentVC = [viewController retain];
         }];
     }
     
@@ -49,6 +66,8 @@
     newFrame.origin.x = 0;
     [UIView animateWithDuration:animated ? _transitionInterval : 0 animations:^{
         _VCContainerView.frame = newFrame;
+    } completion:^(BOOL finished) {
+        _menuVisible = NO;
     }];
 }
 
@@ -86,6 +105,20 @@
     return _VCContainerView.layer.shadowOpacity;
 }
 
+#pragma mark - Gestures
+
+- (void)swipeRight:(UISwipeGestureRecognizer *)g {
+    [self showMenuAnimated:YES];
+}
+
+- (void)swipeLeft:(UISwipeGestureRecognizer *)g {
+    [self showViewController:_currentVC animated:YES];
+}
+
+- (void)tap:(UISwipeGestureRecognizer *)g {
+    [self showViewController:_currentVC animated:YES];
+}
+
 #pragma mark - Life Cycle
 
 - (instancetype)init
@@ -103,19 +136,33 @@
         _menuContainerView.backgroundColor = [UIColor redColor];
         _VCContainerView.backgroundColor = [UIColor lightGrayColor];
         
+        _swipeGestureRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
+        _swipeGestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
+        _swipeGestureLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+        _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+        
         _menuWidthPart = 0.5;
         _transitionInterval = 0.3;
         _VCContainerView.layer.shadowColor = [UIColor blackColor].CGColor;
         self.shadowRadius = 30;
         self.shadowOpacity = 0.5;
+        self.usesGestures = YES;
     }
     return self;
 }
 
 - (void)dealloc {
+    [_currentVC.view removeGestureRecognizer:_tapGesture];
+    [_currentVC.view removeGestureRecognizer:_swipeGestureRight];
+    [_currentVC.view removeGestureRecognizer:_swipeGestureLeft];
+    [_currentVC release];
+    
     [_viewController release];
     [_menuContainerView release];
     [_VCContainerView release];
+    [_swipeGestureRight release];
+    [_swipeGestureLeft release];
+    [_tapGesture release];
     self.menuViewController = nil;
     [super dealloc];
 }
