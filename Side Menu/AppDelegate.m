@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GDMenuController.h"
-#import "TestViewController.h"
+#import "OneViewController.h"
 
 @interface AppDelegate () {
     GDMenuController *_menuController;
@@ -26,7 +26,7 @@
     self.window.rootViewController = _menuController.viewController;
     [self.window makeKeyAndVisible];
     
-    TestViewController *testVC = [[[TestViewController alloc] initWithNibName:@"TestViewController" bundle:nil] autorelease];
+    OneViewController *testVC = [[[OneViewController alloc] initWithNibName:@"TestViewController" bundle:nil] autorelease];
     [_menuController showViewController:testVC animated:YES];
     
     return YES;

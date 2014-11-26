@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Alexey Gordiyenko. All rights reserved.
 //
 
-#import "TestViewController.h"
+#import "OneViewController.h"
 
-@interface TestViewController ()
+@interface OneViewController ()
 
 @end
 
-@implementation TestViewController
+@implementation OneViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

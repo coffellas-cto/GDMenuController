@@ -14,8 +14,8 @@
 		9A96E6571A23D4B000E8A2AA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A96E6551A23D4B000E8A2AA /* LaunchScreen.xib */; };
 		9A96E6631A23D4B000E8A2AA /* Side_MenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A96E6621A23D4B000E8A2AA /* Side_MenuTests.m */; };
 		9A96E66E1A23D5B600E8A2AA /* GDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A96E66D1A23D5B600E8A2AA /* GDMenuController.m */; };
-		9A96E6731A23EB1D00E8A2AA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A96E6711A23EB1D00E8A2AA /* TestViewController.m */; };
-		9A96E6741A23EB1D00E8A2AA /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A96E6721A23EB1D00E8A2AA /* TestViewController.xib */; };
+		9A96E6731A23EB1D00E8A2AA /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A96E6711A23EB1D00E8A2AA /* OneViewController.m */; };
+		9A96E6741A23EB1D00E8A2AA /* OneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A96E6721A23EB1D00E8A2AA /* OneViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,9 +42,9 @@
 		9A96E6621A23D4B000E8A2AA /* Side_MenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Side_MenuTests.m; sourceTree = "<group>"; };
 		9A96E66C1A23D5B600E8A2AA /* GDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDMenuController.h; sourceTree = "<group>"; };
 		9A96E66D1A23D5B600E8A2AA /* GDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDMenuController.m; sourceTree = "<group>"; };
-		9A96E6701A23EB1D00E8A2AA /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		9A96E6711A23EB1D00E8A2AA /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		9A96E6721A23EB1D00E8A2AA /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		9A96E6701A23EB1D00E8A2AA /* OneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
+		9A96E6711A23EB1D00E8A2AA /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
+		9A96E6721A23EB1D00E8A2AA /* OneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,9 +93,7 @@
 				9A96E64A1A23D4B000E8A2AA /* Side_Menu.xcdatamodeld */,
 				9A96E6431A23D4B000E8A2AA /* Supporting Files */,
 				9A96E66F1A23D5BD00E8A2AA /* GDMenuController */,
-				9A96E6701A23EB1D00E8A2AA /* TestViewController.h */,
-				9A96E6711A23EB1D00E8A2AA /* TestViewController.m */,
-				9A96E6721A23EB1D00E8A2AA /* TestViewController.xib */,
+				9A9B0B961A255DF4003A4019 /* ViewControllers */,
 			);
 			path = "Side Menu";
 			sourceTree = "<group>";
@@ -133,6 +131,16 @@
 				9A96E66D1A23D5B600E8A2AA /* GDMenuController.m */,
 			);
 			name = GDMenuController;
+			sourceTree = "<group>";
+		};
+		9A9B0B961A255DF4003A4019 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				9A96E6701A23EB1D00E8A2AA /* OneViewController.h */,
+				9A96E6711A23EB1D00E8A2AA /* OneViewController.m */,
+				9A96E6721A23EB1D00E8A2AA /* OneViewController.xib */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A96E6571A23D4B000E8A2AA /* LaunchScreen.xib in Resources */,
-				9A96E6741A23EB1D00E8A2AA /* TestViewController.xib in Resources */,
+				9A96E6741A23EB1D00E8A2AA /* OneViewController.xib in Resources */,
 				9A96E6541A23D4B000E8A2AA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -239,7 +247,7 @@
 				9A96E64C1A23D4B000E8A2AA /* Side_Menu.xcdatamodeld in Sources */,
 				9A96E6491A23D4B000E8A2AA /* AppDelegate.m in Sources */,
 				9A96E6461A23D4B000E8A2AA /* main.m in Sources */,
-				9A96E6731A23EB1D00E8A2AA /* TestViewController.m in Sources */,
+				9A96E6731A23EB1D00E8A2AA /* OneViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +434,7 @@
 				9A96E6681A23D4B100E8A2AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9A96E6691A23D4B100E8A2AA /* Build configuration list for PBXNativeTarget "Side MenuTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +443,7 @@
 				9A96E66B1A23D4B100E8A2AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
