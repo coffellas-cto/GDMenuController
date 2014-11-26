@@ -32,6 +32,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:indexPath.row == 0 ? @"showOne" : @"showTwo" object:nil];
 }
 
 #pragma mark - Life Cycle

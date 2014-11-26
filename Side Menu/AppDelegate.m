@@ -9,27 +9,48 @@
 #import "AppDelegate.h"
 #import "GDMenuController.h"
 #import "OneViewController.h"
+#import "TwoViewController.h"
 #import "MenuViewController.h"
 
 @interface AppDelegate () {
     GDMenuController *_menuController;
+    OneViewController *_VCOne;
+    TwoViewController *_VCTwo;
 }
 @end
 
 @implementation AppDelegate
 
+#pragma mark - Notifications
+
+- (void)showOne {
+    [_menuController showViewController:_VCOne animated:YES];
+}
+
+- (void)showTwo {
+    if (!_VCTwo) {
+        _VCTwo = [[TwoViewController alloc] initWithNibName:@"TwoViewController" bundle:nil];
+    }
+    
+    [_menuController showViewController:_VCTwo animated:YES];
+}
+
+#pragma mark - Life Cycle
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showOne) name:@"showOne" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTwo) name:@"showTwo" object:nil];
     
     _menuController = [GDMenuController new];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     self.window.rootViewController = _menuController.viewController;
     [self.window makeKeyAndVisible];
     
-    OneViewController *testVC = [[[OneViewController alloc] initWithNibName:@"OneViewController" bundle:nil] autorelease];
+    _VCOne = [[OneViewController alloc] initWithNibName:@"OneViewController" bundle:nil];
     _menuController.menuViewController = [[MenuViewController new] autorelease];
-
-    [_menuController showViewController:testVC animated:NO];
+    [_menuController showViewController:_VCOne animated:NO];
     
     return YES;
 }
@@ -48,6 +69,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [_menuController release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

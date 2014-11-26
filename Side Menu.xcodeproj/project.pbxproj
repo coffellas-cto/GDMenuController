@@ -144,16 +144,24 @@
 		9A9B0B961A255DF4003A4019 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A9B0B9F1A256479003A4019 /* Dummies */,
+				9A9B0B9C1A255E73003A4019 /* MenuViewController.h */,
+				9A9B0B9D1A255E73003A4019 /* MenuViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9A9B0B9F1A256479003A4019 /* Dummies */ = {
+			isa = PBXGroup;
+			children = (
 				9A96E6701A23EB1D00E8A2AA /* OneViewController.h */,
 				9A96E6711A23EB1D00E8A2AA /* OneViewController.m */,
 				9A96E6721A23EB1D00E8A2AA /* OneViewController.xib */,
 				9A9B0B971A255E29003A4019 /* TwoViewController.h */,
 				9A9B0B981A255E29003A4019 /* TwoViewController.m */,
 				9A9B0B991A255E29003A4019 /* TwoViewController.xib */,
-				9A9B0B9C1A255E73003A4019 /* MenuViewController.h */,
-				9A9B0B9D1A255E73003A4019 /* MenuViewController.m */,
 			);
-			name = ViewControllers;
+			name = Dummies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
