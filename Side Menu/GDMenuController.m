@@ -89,6 +89,9 @@
     [_menuViewController.view removeFromSuperview];
     [_menuViewController release];
     _menuViewController = [menuViewController retain];
+    _menuViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _menuViewController.view.frame = CGRectMake(0, 0, CGRectGetWidth(_viewController.view.frame) * _menuWidthPart, CGRectGetHeight(_viewController.view.frame));
+    [_menuContainerView addSubview:_menuViewController.view];
 }
 
 - (void)setShadowRadius:(CGFloat)shadowRadius {
@@ -174,7 +177,7 @@
         [_viewController.view addSubview:_menuContainerView];
         [_viewController.view addSubview:_VCContainerView];
         
-        _menuContainerView.backgroundColor = [UIColor redColor];
+        _menuContainerView.backgroundColor = [UIColor lightGrayColor];
         _VCContainerView.backgroundColor = [UIColor lightGrayColor];
         
         _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
