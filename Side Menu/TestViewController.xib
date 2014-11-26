@@ -28,7 +28,9 @@
                         <constraint firstAttribute="height" constant="64" id="7cO-wA-d1c"/>
                     </constraints>
                     <items>
-                        <navigationItem title="Title" id="SOc-SA-Mjp"/>
+                        <navigationItem title="Title" id="SOc-SA-Mjp">
+                            <barButtonItem key="leftBarButtonItem" image="burger_menu" id="qV8-Ty-RxI"/>
+                        </navigationItem>
                     </items>
                 </navigationBar>
             </subviews>
@@ -42,4 +44,7 @@
             </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="burger_menu" width="24" height="22"/>
+    </resources>
 </document>
