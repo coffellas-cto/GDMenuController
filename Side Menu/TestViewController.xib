@@ -29,7 +29,11 @@
                     </constraints>
                     <items>
                         <navigationItem title="Title" id="SOc-SA-Mjp">
-                            <barButtonItem key="leftBarButtonItem" image="burger_menu" id="qV8-Ty-RxI"/>
+                            <barButtonItem key="leftBarButtonItem" image="burger_menu" id="qV8-Ty-RxI">
+                                <connections>
+                                    <action selector="menuTapped:" destination="-1" id="kp3-PO-etV"/>
+                                </connections>
+                            </barButtonItem>
                         </navigationItem>
                     </items>
                 </navigationBar>

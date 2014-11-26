@@ -37,6 +37,10 @@
     [_menuController showViewController:_VCTwo animated:YES];
 }
 
+- (void)showMenu {
+    [_menuController showMenuAnimated:YES];
+}
+
 #pragma mark - Life Cycle
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -44,6 +48,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showOne) name:@"showOne" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showTwo) name:@"showTwo" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showMenu) name:@"showMenu" object:nil];
     
     _menuController = [GDMenuController new];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];

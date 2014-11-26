@@ -13,6 +13,9 @@
 @end
 
 @implementation TestViewController
+- (IBAction)menuTapped:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showMenu" object:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
