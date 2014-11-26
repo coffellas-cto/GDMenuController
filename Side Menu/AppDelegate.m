@@ -8,14 +8,13 @@
 
 #import "AppDelegate.h"
 #import "GDMenuController.h"
-#import "OneViewController.h"
-#import "TwoViewController.h"
+#import "TestViewController.h"
 #import "MenuViewController.h"
 
 @interface AppDelegate () {
     GDMenuController *_menuController;
-    OneViewController *_VCOne;
-    TwoViewController *_VCTwo;
+    TestViewController *_VCOne;
+    TestViewController *_VCTwo;
 }
 @end
 
@@ -29,7 +28,10 @@
 
 - (void)showTwo {
     if (!_VCTwo) {
-        _VCTwo = [[TwoViewController alloc] initWithNibName:@"TwoViewController" bundle:nil];
+        _VCTwo = [[TestViewController alloc] initWithNibName:@"TestViewController" bundle:nil];
+        [_VCTwo.view layoutSubviews];
+        _VCTwo.titleItem.title = @"Two";
+        _VCTwo.nameLabel.text = @"TWO";
     }
     
     [_menuController showViewController:_VCTwo animated:YES];
@@ -48,7 +50,10 @@
     self.window.rootViewController = _menuController.viewController;
     [self.window makeKeyAndVisible];
     
-    _VCOne = [[OneViewController alloc] initWithNibName:@"OneViewController" bundle:nil];
+    _VCOne = [[TestViewController alloc] initWithNibName:@"TestViewController" bundle:nil];
+    [_VCOne.view layoutSubviews];
+    _VCOne.titleItem.title = @"One";
+    _VCOne.nameLabel.text = @"ONE";
     _menuController.menuViewController = [[MenuViewController new] autorelease];
     [_menuController showViewController:_VCOne animated:NO];
     

@@ -4,8 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OneViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestViewController">
             <connections>
+                <outlet property="nameLabel" destination="lsi-XR-Iqv" id="wR2-EV-mlc"/>
+                <outlet property="titleItem" destination="SOc-SA-Mjp" id="tEb-7Y-MiC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,17 +16,29 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ONE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsi-XR-Iqv">
-                    <rect key="frame" x="255" y="273" width="91" height="53"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEST" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsi-XR-Iqv">
+                    <rect key="frame" x="248" y="273" width="104" height="53"/>
                     <fontDescription key="fontDescription" type="system" pointSize="44"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6H-KY-jff">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="7cO-wA-d1c"/>
+                    </constraints>
+                    <items>
+                        <navigationItem title="Title" id="SOc-SA-Mjp"/>
+                    </items>
+                </navigationBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="h6H-KY-jff" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Gb9-QE-LLg"/>
                 <constraint firstAttribute="centerX" secondItem="lsi-XR-Iqv" secondAttribute="centerX" id="QH8-SG-koj"/>
+                <constraint firstAttribute="trailing" secondItem="h6H-KY-jff" secondAttribute="trailing" id="ec2-tF-ieO"/>
                 <constraint firstAttribute="centerY" secondItem="lsi-XR-Iqv" secondAttribute="centerY" id="pQH-pY-Y8R"/>
+                <constraint firstItem="h6H-KY-jff" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="rOQ-cT-f4S"/>
             </constraints>
         </view>
     </objects>

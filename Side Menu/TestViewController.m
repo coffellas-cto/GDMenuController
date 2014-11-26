@@ -1,18 +1,18 @@
 //
-//  TwoViewController.m
+//  TestViewController.m
 //  Side Menu
 //
-//  Created by Alex G on 25.11.14.
+//  Created by Alex G on 24.11.14.
 //  Copyright (c) 2014 Alexey Gordiyenko. All rights reserved.
 //
 
-#import "TwoViewController.h"
+#import "TestViewController.h"
 
-@interface TwoViewController ()
+@interface TestViewController ()
 
 @end
 
-@implementation TwoViewController
+@implementation TestViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,4 +34,9 @@
 }
 */
 
+- (void)dealloc {
+    [_nameLabel release];
+    [_titleItem release];
+    [super dealloc];
+}
 @end

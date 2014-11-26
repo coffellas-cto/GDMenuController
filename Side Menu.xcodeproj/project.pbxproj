@@ -14,10 +14,8 @@
 		9A96E6571A23D4B000E8A2AA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A96E6551A23D4B000E8A2AA /* LaunchScreen.xib */; };
 		9A96E6631A23D4B000E8A2AA /* Side_MenuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A96E6621A23D4B000E8A2AA /* Side_MenuTests.m */; };
 		9A96E66E1A23D5B600E8A2AA /* GDMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A96E66D1A23D5B600E8A2AA /* GDMenuController.m */; };
-		9A96E6731A23EB1D00E8A2AA /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A96E6711A23EB1D00E8A2AA /* OneViewController.m */; };
-		9A96E6741A23EB1D00E8A2AA /* OneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A96E6721A23EB1D00E8A2AA /* OneViewController.xib */; };
-		9A9B0B9A1A255E29003A4019 /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9B0B981A255E29003A4019 /* TwoViewController.m */; };
-		9A9B0B9B1A255E29003A4019 /* TwoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9B0B991A255E29003A4019 /* TwoViewController.xib */; };
+		9A96E6731A23EB1D00E8A2AA /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A96E6711A23EB1D00E8A2AA /* TestViewController.m */; };
+		9A96E6741A23EB1D00E8A2AA /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A96E6721A23EB1D00E8A2AA /* TestViewController.xib */; };
 		9A9B0B9E1A255E73003A4019 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9B0B9D1A255E73003A4019 /* MenuViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -45,12 +43,9 @@
 		9A96E6621A23D4B000E8A2AA /* Side_MenuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Side_MenuTests.m; sourceTree = "<group>"; };
 		9A96E66C1A23D5B600E8A2AA /* GDMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDMenuController.h; sourceTree = "<group>"; };
 		9A96E66D1A23D5B600E8A2AA /* GDMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDMenuController.m; sourceTree = "<group>"; };
-		9A96E6701A23EB1D00E8A2AA /* OneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
-		9A96E6711A23EB1D00E8A2AA /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
-		9A96E6721A23EB1D00E8A2AA /* OneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneViewController.xib; sourceTree = "<group>"; };
-		9A9B0B971A255E29003A4019 /* TwoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoViewController.h; sourceTree = "<group>"; };
-		9A9B0B981A255E29003A4019 /* TwoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoViewController.m; sourceTree = "<group>"; };
-		9A9B0B991A255E29003A4019 /* TwoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoViewController.xib; sourceTree = "<group>"; };
+		9A96E6701A23EB1D00E8A2AA /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		9A96E6711A23EB1D00E8A2AA /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		9A96E6721A23EB1D00E8A2AA /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		9A9B0B9C1A255E73003A4019 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		9A9B0B9D1A255E73003A4019 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,12 +149,9 @@
 		9A9B0B9F1A256479003A4019 /* Dummies */ = {
 			isa = PBXGroup;
 			children = (
-				9A96E6701A23EB1D00E8A2AA /* OneViewController.h */,
-				9A96E6711A23EB1D00E8A2AA /* OneViewController.m */,
-				9A96E6721A23EB1D00E8A2AA /* OneViewController.xib */,
-				9A9B0B971A255E29003A4019 /* TwoViewController.h */,
-				9A9B0B981A255E29003A4019 /* TwoViewController.m */,
-				9A9B0B991A255E29003A4019 /* TwoViewController.xib */,
+				9A96E6701A23EB1D00E8A2AA /* TestViewController.h */,
+				9A96E6711A23EB1D00E8A2AA /* TestViewController.m */,
+				9A96E6721A23EB1D00E8A2AA /* TestViewController.xib */,
 			);
 			name = Dummies;
 			sourceTree = "<group>";
@@ -245,9 +237,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A96E6571A23D4B000E8A2AA /* LaunchScreen.xib in Resources */,
-				9A96E6741A23EB1D00E8A2AA /* OneViewController.xib in Resources */,
+				9A96E6741A23EB1D00E8A2AA /* TestViewController.xib in Resources */,
 				9A96E6541A23D4B000E8A2AA /* Images.xcassets in Resources */,
-				9A9B0B9B1A255E29003A4019 /* TwoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,10 +259,9 @@
 				9A96E66E1A23D5B600E8A2AA /* GDMenuController.m in Sources */,
 				9A96E64C1A23D4B000E8A2AA /* Side_Menu.xcdatamodeld in Sources */,
 				9A96E6491A23D4B000E8A2AA /* AppDelegate.m in Sources */,
-				9A9B0B9A1A255E29003A4019 /* TwoViewController.m in Sources */,
 				9A9B0B9E1A255E73003A4019 /* MenuViewController.m in Sources */,
 				9A96E6461A23D4B000E8A2AA /* main.m in Sources */,
-				9A96E6731A23EB1D00E8A2AA /* OneViewController.m in Sources */,
+				9A96E6731A23EB1D00E8A2AA /* TestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

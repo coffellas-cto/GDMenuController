@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OneViewController : UIViewController
+@interface TestViewController : UIViewController
+@property (retain, nonatomic) IBOutlet UILabel *nameLabel;
+@property (retain, nonatomic) IBOutlet UINavigationItem *titleItem;
 
 @end
