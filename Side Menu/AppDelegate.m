@@ -32,6 +32,7 @@
         [_VCTwo.view layoutSubviews];
         _VCTwo.titleItem.title = @"Two";
         _VCTwo.nameLabel.text = @"TWO";
+        _VCTwo.backgroundColor = [UIColor yellowColor];
     }
     
     [_menuController showViewController:_VCTwo animated:YES];
@@ -59,6 +60,7 @@
     [_VCOne.view layoutSubviews];
     _VCOne.titleItem.title = @"One";
     _VCOne.nameLabel.text = @"ONE";
+    _VCOne.backgroundColor = [UIColor lightTextColor];
     _menuController.menuViewController = [[MenuViewController new] autorelease];
     [_menuController showViewController:_VCOne animated:NO];
     

@@ -11,5 +11,6 @@
 @interface TestViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UILabel *nameLabel;
 @property (retain, nonatomic) IBOutlet UINavigationItem *titleItem;
+@property (retain, nonatomic) UIColor *backgroundColor;
 
 @end
